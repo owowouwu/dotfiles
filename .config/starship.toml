@@ -5,6 +5,23 @@ continuation_prompt = "[▸▹ ](dimmed white)"
 
 format = """($directory\
 $container\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$fill\
+$git_metrics\n)$cmd_duration\
+$hostname\
+$localip\
+$shlvl\
+$shell\
+$env_var\
+$jobs\
+$sudo\
+$username\
+$character"""
+
+right_format = """
 $c\
 $cmake\
 $cobol\
@@ -48,27 +65,10 @@ $vlang\
 $vagrant\
 $zig\
 $buf\
-$fill\
-$git_status\
-$git_metrics\n)$cmd_duration\
-$hostname\
-$localip\
-$shlvl\
-$shell\
-$env_var\
-$jobs\
-$sudo\
-$username\
-$character"""
-
-right_format = """
 $singularity\
 $kubernetes\
 $vcsh\
 $fossil_branch\
-$git_branch\
-$git_commit\
-$git_state\
 $hg_branch\
 $pijul_channel\
 $docker_context\
