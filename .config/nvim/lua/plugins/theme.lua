@@ -6,4 +6,10 @@ return {
       flavour = "macchiato",
     },
   },
+  {
+    "catppuccin",
+    opts = {
+      transparent_background = true,
+    },
+  },
 }
