@@ -1,4 +1,4 @@
-alias nnn="$HOME/bin/nnn -de"
+alias nnn="$HOME/.local/bin/nnn -de"
 export NNN_FIFO="/tmp/nnn.fifo"
 export NNN_PLUG="p:preview-tui"
 export OH_MY_ZSH="$HOME/.oh-my-zsh"
