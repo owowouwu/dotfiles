@@ -76,5 +76,9 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+#
+# homebrew initialise
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+# starship initialise
 eval "$(starship init zsh)"

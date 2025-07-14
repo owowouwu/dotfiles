@@ -42,9 +42,9 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
-gtk-titlebar = false
+gtk-titlebar = true 
 gtk-tabs-location = top 
-window-decoration = false
+window-decoration = true 
 gtk-wide-tabs = false
 window-theme = ghostty
 gtk-adwaita = false
