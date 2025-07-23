@@ -25,6 +25,11 @@ config.window_background_opacity = 0.9
 config.macos_window_background_blur = 30
 config.native_macos_fullscreen_mode = true
 
+local CTRL_OR_COMMAND_KEY = "CTRL"
+if wezterm.target_triple == "aarch64-apple-darwin" then
+	CTRL_OR_COMMAND_KEY = "SUPER"
+end
+
 tabline.setup({
 	options = {
 		icons_enabled = true,
@@ -83,7 +88,7 @@ end
 local function split_nav(resize_or_move, key)
 	return {
 		key = key,
-		mods = resize_or_move == "resize" and "META" or "SUPER",
+		mods = resize_or_move == "resize" and "META" or CTRL_OR_COMMAND_KEY,
 		action = wezterm.action_callback(function(win, pane)
 			if is_vim(pane) then
 				-- pass the keys through to vim/nvim
@@ -101,7 +106,7 @@ local function split_nav(resize_or_move, key)
 	}
 end
 
-config.leader = { key = "e", mods = "SUPER", timeout_milliseconds = 2000 }
+config.leader = { key = "e", mods = CTRL_OR_COMMAND_KEY, timeout_milliseconds = 2000 }
 config.disable_default_key_bindings = true
 config.keys = {
 	{
@@ -114,16 +119,6 @@ config.keys = {
 		key = "p",
 		mods = "LEADER",
 		action = action.ActivateTabRelative(-1),
-	},
-	{
-		key = "c",
-		mods = "SUPER",
-		action = action.CopyTo("Clipboard"),
-	},
-	{
-		key = "v",
-		mods = "SUPER",
-		action = action.PasteFrom("Clipboard"),
 	},
 	{
 		key = "n",
@@ -172,10 +167,41 @@ config.keys = {
 	split_nav("resize", "l"),
 	{
 		key = "P",
-		mods = "SUPER|SHIFT",
+		mods = string.format("SHIFT|%s", CTRL_OR_COMMAND_KEY),
 		action = wezterm.action.ActivateCommandPalette,
 	},
+	{
+		key = "w",
+		mods = "META",
+		action = wezterm.action.CloseCurrentPane({ confirm = false }),
+	},
+	{
+		key = "h",
+		mods = string.format("META|%s", CTRL_OR_COMMAND_KEY),
+		action = wezterm.action.RotatePanes("Clockwise"),
+	},
+	{
+		key = "l",
+		mods = string.format("META|%s", CTRL_OR_COMMAND_KEY),
+		action = wezterm.action.RotatePanes("CounterClockwise"),
+	},
 }
+
+if wezterm.target_triple == "aarch-apple-darwin" then
+	table.insert(config.keys, {
+
+		{
+			key = "c",
+			mods = "SUPER",
+			action = action.CopyTo("Clipboard"),
+		},
+		{
+			key = "v",
+			mods = "SUPER",
+			action = action.PasteFrom("Clipboard"),
+		},
+	})
+end
 
 for i = 1, 9 do
 	table.insert(config.keys, {
