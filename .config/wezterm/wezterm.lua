@@ -4,6 +4,7 @@ local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabl
 
 config.font = wezterm.font("CaskaydiaCove Nerd Font Mono")
 config.tab_bar_at_bottom = false
+config.max_fps = 200
 
 local function get_appearance()
 	if wezterm.gui then
@@ -136,6 +137,16 @@ config.keys = {
 		action = action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 	},
 	{
+		key = "x",
+		mods = "LEADER",
+		action = action.ActivateCopyMode,
+	},
+	{
+		key = "f",
+		mods = "LEADER",
+		action = action.QuickSelect,
+	},
+	{
 		key = "z",
 		mods = "LEADER",
 		action = action.TogglePaneZoomState,
@@ -187,19 +198,16 @@ config.keys = {
 	},
 }
 
-if wezterm.target_triple == "aarch-apple-darwin" then
+if wezterm.target_triple == "aarch64-apple-darwin" then
 	table.insert(config.keys, {
-
-		{
-			key = "c",
-			mods = "SUPER",
-			action = action.CopyTo("Clipboard"),
-		},
-		{
-			key = "v",
-			mods = "SUPER",
-			action = action.PasteFrom("Clipboard"),
-		},
+		key = "c",
+		mods = "SUPER",
+		action = action.CopyTo("Clipboard"),
+	})
+	table.insert(config.keys, {
+		key = "v",
+		mods = "SUPER",
+		action = action.PasteFrom("Clipboard"),
 	})
 end
 
