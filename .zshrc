@@ -15,8 +15,6 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light jeffreytse/zsh-vi-mode
 zinit light Aloxaf/fzf-tab
-#plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
-#source $OH_MY_ZSH/oh-my-zsh.sh
 
 autoload -Uz compinit && compinit
 
@@ -62,21 +60,19 @@ n () # to cd on quit
             rm -f "$NNN_TMPFILE" > /dev/null
     fi
 }
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/home/steven/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/home/steven/anaconda3/etc/profile.d/conda.sh" ]; then
-#         . "/home/steven/anaconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/home/steven/anaconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# <<< conda initialize <<<
-#
-# pyenv
+__conda_setup="$('${HOME}/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "${HOME}/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "${HOME}/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="${HOME}/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# homebrew initialise
+#eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 # starship initialise
 eval "$(starship init zsh)"
