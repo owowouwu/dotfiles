@@ -1,7 +1,6 @@
 alias nnn="/opt/homebrew/bin/nnn -de"
 export NNN_FIFO="/tmp/nnn.fifo"
 export NNN_PLUG="p:preview-tui"
-export OH_MY_ZSH="$HOME/.oh-my-zsh"
 export ZINIT_HOME="${HOME}/.local/share/zinit/zinit.git"
 
 if [ ! -d "$ZINIT_HOME" ]; then
@@ -38,7 +37,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxie_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
 alias vim='nvim'

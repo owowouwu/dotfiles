@@ -1,0 +1,29 @@
+
+- name: Install dependencies
+  dnf:
+    name:
+      - dnf-plugins-core 
+    state: present
+
+- name: Ensure docker repository is enabled
+  community.general.dnf_config_manager:
+    name: https://download.docker.com/linux/rhel/docker-ce.repo
+    state: enabled
+
+- name: Install Docker packages
+  dnf:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+  state: present
+
+- name: Enable Docker
+  service:
+    name: docker
+    state: started 
+    enabled: yes
+    
+
