@@ -22,19 +22,16 @@ local function scheme_for_appearance(appearance)
 end
 
 config.color_scheme = scheme_for_appearance(get_appearance())
-config.window_background_opacity = 0.85
-config.macos_window_background_blur = 30
-config.native_macos_fullscreen_mode = true
-config.kde_window_background_blur = true
 
 local CTRL_OR_COMMAND_KEY = "CTRL"
 if wezterm.target_triple == "aarch64-apple-darwin" then
 	CTRL_OR_COMMAND_KEY = "SUPER"
-end
-
-if wezterm.target_triple == "aarch64-apple-darwin" then
+	config.window_background_opacity = 0.85
+	config.macos_window_background_blur = 30
 	config.window_decorations = "RESIZE"
+	config.native_macos_fullscreen_mode = true
 else
+	config.kde_window_background_blur = true
 	config.window_decorations = "TITLE | RESIZE"
 end
 
